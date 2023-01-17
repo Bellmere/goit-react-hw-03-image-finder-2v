@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Searchbar } from "./Searchbar/Searchbar";
+import { ImageGallery } from "./ImageGallery/ImageGallery";
 
 export class App extends Component {
   state = {
@@ -7,9 +8,7 @@ export class App extends Component {
   };
 
   handleSearchSubmit = inputSearch => {
-    this.setState({
-      inputSearch: inputSearch,
-    })
+    this.setState({ inputSearch });
   }
 
   render() {
@@ -26,6 +25,9 @@ export class App extends Component {
           color: '#010101'
         }}
         >
+          <ImageGallery 
+          inputSearch={this.state.inputSearch}
+          />
       </div>
       </div>
     );
