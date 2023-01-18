@@ -3,6 +3,7 @@ import { fetchImages } from "components/Api/Api";
 import { Loader } from "components/Loader/Loader";
 import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
 import { Btn } from "components/Button/Button";
+import { Modal } from "components/Modal/Modal";
 import css from '../ImageGallery/ImageGallery.module.css';
 
 export class ImageGallery extends Component {
@@ -12,6 +13,9 @@ export class ImageGallery extends Component {
         status: 'idle',
         images: [],
         pageNr: 1,
+        showModal: false,
+        imgSrc: '',
+        imgAlt: '',
     };
 
     componentDidUpdate(prevProps, prevState) {
@@ -37,8 +41,33 @@ export class ImageGallery extends Component {
         });
       };
 
+    toggleModal = () => {
+        this.setState(({showModal}) => ({
+            showModal: !showModal,
+        }))
+    }
+
+    onOpenModal = e => {
+        console.log(e.target.alt);
+        this.setState({
+            showModal: true,
+            imgSrc: e.target.name,
+            imgAlt: e.target.alt,
+        });
+    };
+
+    onCloseModal = e => {
+        e.stopPropagation();
+        this.setState({
+            showModal: false,
+            imgSrc: '',
+            imgAlt: '',
+        })
+    }
+
     render() {
-        const {images, error, status} = this.state;
+        const {images, error, status, showModal, imgSrc, imgAlt} = this.state;
+        console.log(imgSrc);
 
         if (status === 'idle') {
             return <div>Search images and photos</div>
@@ -57,7 +86,11 @@ export class ImageGallery extends Component {
                 <div className={css.wrapper}>
                     <ul className={css.imageGallery}>
                 {images.map((image, index) => (
-                <ImageGalleryItem image={image} key={index} />
+                <ImageGalleryItem 
+                image={image} 
+                key={index}
+                onClick={this.onOpenModal} 
+                />
                 ))}
                 </ul>
                 {images.length > 0 ? (
@@ -65,6 +98,11 @@ export class ImageGallery extends Component {
                 onClick={this.onClickMore}
                 />
                 ) : (<p>No images found</p>)}
+                {showModal && <Modal onClose={this.toggleModal}>
+                    <button className={css.closeBtn} type='button' onClick={this.onCloseModal}>Close</button>
+                    <img className={css.modal__img} src={imgSrc} alt={imgAlt} />
+                    <p className={css.modal__text}>{imgAlt}</p>
+                </Modal>}
                 </div>
             );
         }
