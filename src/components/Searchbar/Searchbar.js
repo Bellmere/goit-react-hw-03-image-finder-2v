@@ -1,6 +1,7 @@
 import { Component } from "react";
 import css from '../Searchbar/Searchbar.module.css';
 import { HiMagnifyingGlass } from "react-icons/hi2";
+import PropTypes from 'prop-types';
 
 export class Searchbar extends Component {
     state = {
@@ -51,3 +52,7 @@ export class Searchbar extends Component {
         );
     };
 };
+
+Searchbar.propTypes = {
+    onSubmit: PropTypes.func,
+  };

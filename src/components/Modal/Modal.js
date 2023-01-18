@@ -4,22 +4,6 @@ import { Component } from 'react';
 
 
 export class Modal extends Component {
-    // state = {
-    //     imgSrc: '',
-    //     imgAlt: '',
-    // };
-
-    // componentDidUpdate(prevProps, prevState) {
-    //     const lol = this.props.imgAlt;
-    //     console.log(lol)
-
-    //     if (prevProps.imgSrc !== this.props.imgSrc) {
-    //         this.setState({
-    //             imgSrc: this.props.imgSrc,
-    //             imgAlt: this.props.imgAlt,
-    //         })
-    //     }
-    // }
 
     componentDidMount() {
         window.addEventListener('keydown', this.handleKeyDown);

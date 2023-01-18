@@ -5,6 +5,7 @@ import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
 import { Btn } from "components/Button/Button";
 import { Modal } from "components/Modal/Modal";
 import css from '../ImageGallery/ImageGallery.module.css';
+import PropTypes from 'prop-types';
 
 export class ImageGallery extends Component {
     state = {
@@ -67,7 +68,6 @@ export class ImageGallery extends Component {
 
     render() {
         const {images, error, status, showModal, imgSrc, imgAlt} = this.state;
-        console.log(imgSrc);
 
         if (status === 'idle') {
             return <div>Search images and photos</div>
@@ -108,4 +108,14 @@ export class ImageGallery extends Component {
         }
 
     };
+}
+
+ImageGallery.porpTypes = {
+    images: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+        })
+    ),
+    error: PropTypes.string.isRequired,
+    inputSearch: PropTypes.string.isRequired,
 }
