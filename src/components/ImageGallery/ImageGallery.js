@@ -20,7 +20,6 @@ export class ImageGallery extends Component {
     };
 
     componentDidUpdate(prevProps, prevState) {
-        const {pageNr, inputSearch} = this.state;
         const prevSearch = prevProps.inputSearch;
         const currentSearch = this.props.inputSearch;
 
