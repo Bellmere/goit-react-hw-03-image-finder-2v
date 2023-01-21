@@ -20,6 +20,8 @@
 
 .modal__text {
     color: blue;
+    margin: 0;
+    text-align: center;
 }
 
 .closeBtn {

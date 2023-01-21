@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { fetchImages } from "components/Api/Api";
+import { fetchImages } from "Api/Api";
 import { Loader } from "components/Loader/Loader";
 import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
 import { Btn } from "components/Button/Button";
@@ -110,11 +110,5 @@ export class ImageGallery extends Component {
 }
 
 ImageGallery.porpTypes = {
-    images: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-        })
-    ),
-    error: PropTypes.string.isRequired,
     inputSearch: PropTypes.string.isRequired,
 }

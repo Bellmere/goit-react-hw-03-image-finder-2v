@@ -13,6 +13,12 @@ export const ImageGalleryItem = ({ image, onClick }) => (
 );
 
 ImageGalleryItem.propTypes = {
-  image: PropTypes.object.isRequired,
+  image: 
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      tags: PropTypes.string.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
+      webformatURL: PropTypes.string.isRequired,
+    }),
   onClick: PropTypes.func.isRequired,
 };
